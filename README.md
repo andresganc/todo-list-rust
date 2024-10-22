@@ -1,1 +1,1 @@
-# Todo List Rust / Web, Desktop, CLI with Files, SQLite and API
+# Todo List Rust / CLI, Web, Desktop, SQLite and API
