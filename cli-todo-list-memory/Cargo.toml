@@ -7,5 +7,4 @@ edition = "2021"
 # default = ["crossterm"]
 
 [dependencies]
-crossterm = "0.28.1"
-ratatui = "0.29.0"
+colorful = "0.3.2"

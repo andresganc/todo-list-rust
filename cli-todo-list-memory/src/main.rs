@@ -1,43 +1,34 @@
-use std::io;
+extern crate colorful;
+use colorful::Color;
+use colorful::Colorful;
+// use colorful::HSL;
+// use colorful::RGB;
 
-use ratatui::{
-    crossterm::event::{self, KeyCode, KeyEventKind},
-    style::Stylize,
-    widgets::Paragraph,
-    DefaultTerminal,
-};
+fn main() {
+    // TEXTS
+    let title = "TODO LIST - COMMAND LINE INTERFACE";
+    let subtitle = "Store: Memory";
+    let select_language = "Select language";
 
-fn main() -> io::Result<()> {
-    // Init & Clear Terminal
-    let mut terminal = ratatui::init();
-    terminal.clear()?;
-
-    // Run terminal
-    let app_result = run(terminal);
-    ratatui::restore();
-
-    app_result
-
-    // println!("TODO LIST CLI - MEMORY");
-    // println!("English");
-    // println!("Spanish");
-    // println!("Select language");
-}
-
-// Function Run
-fn run(mut terminal: DefaultTerminal) -> io::Result<()> {
-    loop {
-        terminal.draw(|frame| {
-            let greeting = Paragraph::new("Hello Ratatui! (press 'q' to quit)")
-                .white()
-                .on_dark_gray();
-            frame.render_widget(greeting, frame.area());
-        })?;
-
-        if let event::Event::Key(key) = event::read()? {
-            if key.kind == KeyEventKind::Press && key.code == KeyCode::Char('q') {
-                return Ok(());
-            }
-        }
-    }
+    println!(
+        "{}",
+        title
+            .color(Color::GreenYellow)
+            .bg_color(Color::Black)
+            .bold()
+    );
+    println!(
+        "{}",
+        subtitle.color(Color::Orange3).bg_color(Color::Black).bold()
+    );
+    println!("1: English");
+    println!("2: Spanish");
+    println!("0: Exit");
+    println!(
+        "{}",
+        select_language
+            .color(Color::Blue)
+            .bg_color(Color::Black)
+            .bold()
+    );
 }
