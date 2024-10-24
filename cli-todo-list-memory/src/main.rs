@@ -9,14 +9,22 @@ use colorful::Colorful;
 // use colorful::RGB;
 
 fn main() {
+    // EMOJIS
+
+    let todo_list = emojis::get_by_shortcode("rocket").unwrap();
+    let emoji_test = emojis::get_by_shortcode("flag_united_states").unwrap();
+    // let rocket = emojis::get("").unwrap();
+
     // TEXTS
     let title = "TODO LIST MEMORY";
     let subtitle = "Store: Memory";
     let select_language = "Select an option";
     let invalid_option = "Invalid option";
 
+    println!("{}", emoji_test);
     println!(
-        "{}",
+        "{} {}",
+        todo_list,
         title
             .color(Color::GreenYellow)
             .bg_color(Color::Black)
@@ -82,13 +90,13 @@ fn about_as() {
     println!("Author: Andres Giraldo Arenas");
     println!("Language: Rust");
     println!("Type: Command Line Interface");
-    println!("Used libraries: Colorful");
+    println!("Used libraries: Emojis, Colorful");
     println!("Storage: Memory");
 }
 
 fn english_language() {
     let title = "TODO LIST MEMORY - ENGLISH";
-    let english_language = "English language selected";
+    let english_language = "... english language selected ";
     let select_option = "Select an option";
     let invalid_option = "Invalid option";
 

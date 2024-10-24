@@ -8,3 +8,4 @@ edition = "2021"
 
 [dependencies]
 colorful = "0.3.2"
+emojis = "0.6.4"
