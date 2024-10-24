@@ -1,6 +1,6 @@
 use std::io;
 use std::io::BufRead;
-use std::io::Write;
+// use std::io::Write;
 
 extern crate colorful;
 use colorful::Color;
@@ -10,21 +10,24 @@ use colorful::Colorful;
 
 fn main() {
     // EMOJIS
-
-    let todo_list = emojis::get_by_shortcode("rocket").unwrap();
-    let emoji_test = emojis::get_by_shortcode("flag_united_states").unwrap();
+    // let emoji_test = emojis::get_by_shortcode("arrow_left").unwrap();
+    let emoji_todo_list = emojis::get_by_shortcode("bookmark_tabs").unwrap();
+    let emoji_us = emojis::get_by_shortcode("us").unwrap();
+    let emoji_es = emojis::get_by_shortcode("es").unwrap();
+    let emoji_about = emojis::get_by_shortcode("green_circle").unwrap();
+    let emoji_exit = emojis::get_by_shortcode("red_circle").unwrap();
     // let rocket = emojis::get("").unwrap();
 
     // TEXTS
     let title = "TODO LIST MEMORY";
-    let subtitle = "Store: Memory";
+    // let subtitle = "Store: Memory";
     let select_language = "Select an option";
     let invalid_option = "Invalid option";
 
-    println!("{}", emoji_test);
+    // println!("{}", emoji_test);
     println!(
         "{} {}",
-        todo_list,
+        emoji_todo_list,
         title
             .color(Color::GreenYellow)
             .bg_color(Color::Black)
@@ -34,10 +37,10 @@ fn main() {
     //     "{}",
     //     subtitle.color(Color::Orange3).bg_color(Color::Black).bold()
     // );
-    println!("1: English");
-    println!("2: Spanish");
-    println!("3: About as");
-    println!("0: Exit");
+    println!("1: English {}", emoji_us);
+    println!("2: Spanish {}", emoji_es);
+    println!("3: About as {}", emoji_about);
+    println!("0: Exit {}", emoji_exit);
     println!(
         "{}",
         select_language
@@ -64,6 +67,7 @@ fn main() {
 }
 
 fn invalid_option() {
+    // TEXTS
     let select_language = "Select language";
     let invalid_option = "Invalid option";
 
@@ -81,9 +85,24 @@ fn invalid_option() {
 }
 
 fn about_as() {
+    // EMOJIS
+    let emoji_about_as = emojis::get_by_shortcode("green_circle").unwrap();
+
+    // TEXTS
     let title = "ABOUT AS";
+    let selected = "... about as selected ";
+
     println!(
         "{}",
+        selected
+            .color(Color::DarkGray)
+            .bg_color(Color::Black)
+            .italic()
+    );
+
+    println!(
+        "{} {}",
+        emoji_about_as,
         title.color(Color::DarkSeaGreen4a).bg_color(Color::Black)
     );
     println!("Name: CLI Todo List Memory");
@@ -92,31 +111,47 @@ fn about_as() {
     println!("Type: Command Line Interface");
     println!("Used libraries: Emojis, Colorful");
     println!("Storage: Memory");
+    println!("Web: www.andresgadev.com");
+    println!("X: @andresgandev");
+    println!("Github: andresaganc");
+    println!("Linkedin: ");
 }
 
 fn english_language() {
+    // EMOJIS
+    let emoji_todo_list = emojis::get_by_shortcode("bookmark_tabs").unwrap();
+    let emoji_list_tasks = emojis::get_by_shortcode("open_book").unwrap();
+    let emoji_add_task = emojis::get_by_shortcode("blue_book").unwrap();
+    let emoji_edit_task = emojis::get_by_shortcode("orange_book").unwrap();
+    let emoji_delete_task = emojis::get_by_shortcode("closed_book").unwrap();
+    let emoji_check_task = emojis::get_by_shortcode("green_book").unwrap();
+    let emoji_back = emojis::get_by_shortcode("arrow_left").unwrap();
+
+    // TEXTS
     let title = "TODO LIST MEMORY - ENGLISH";
-    let english_language = "... english language selected ";
+    let selected = "... english language selected ";
     let select_option = "Select an option";
     let invalid_option = "Invalid option";
 
     println!(
         "{}",
-        english_language
+        selected
             .color(Color::DarkGray)
             .bg_color(Color::Black)
+            .italic()
     );
     println!(
-        "{}",
+        "{} {}",
+        emoji_todo_list,
         title.color(Color::Orange3).bg_color(Color::Black).bold()
     );
 
-    println!("1: List tasks");
-    println!("2: Add task");
-    println!("3: Edit task");
-    println!("4: Remove task");
-    println!("5: Check task");
-    println!("0: Back");
+    println!("1: List tasks {}", emoji_list_tasks);
+    println!("2: Add task {}", emoji_add_task);
+    println!("3: Edit task {}", emoji_edit_task);
+    println!("4: Delete task {}", emoji_delete_task);
+    println!("5: Check task {}", emoji_check_task);
+    println!("0: Back {}", emoji_back);
     println!(
         "{}",
         select_option.color(Color::Blue).bg_color(Color::Black)
