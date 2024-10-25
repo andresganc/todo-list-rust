@@ -8,6 +8,7 @@ use colorful::Colorful;
 // use colorful::HSL;
 // use colorful::RGB;
 
+// MAIN
 fn main() {
     // EMOJIS
     // let emoji_test = emojis::get_by_shortcode("arrow_left").unwrap();
@@ -66,6 +67,7 @@ fn main() {
     }
 }
 
+// INVALID OPTIONS
 fn invalid_option() {
     // TEXTS
     let select_language = "Select language";
@@ -84,6 +86,7 @@ fn invalid_option() {
     );
 }
 
+// ABOUT AS
 fn about_as() {
     // EMOJIS
     let emoji_about_as = emojis::get_by_shortcode("green_circle").unwrap();
@@ -117,6 +120,7 @@ fn about_as() {
     println!("Linkedin: ");
 }
 
+// ENGLISH LANGUAGES
 fn english_language() {
     // EMOJIS
     let emoji_todo_list = emojis::get_by_shortcode("bookmark_tabs").unwrap();
@@ -140,24 +144,51 @@ fn english_language() {
             .bg_color(Color::Black)
             .italic()
     );
-    println!(
-        "{} {}",
-        emoji_todo_list,
-        title.color(Color::Orange3).bg_color(Color::Black).bold()
-    );
 
-    println!("1: List tasks {}", emoji_list_tasks);
-    println!("2: Add task {}", emoji_add_task);
-    println!("3: Edit task {}", emoji_edit_task);
-    println!("4: Delete task {}", emoji_delete_task);
-    println!("5: Check task {}", emoji_check_task);
-    println!("0: Back {}", emoji_back);
-    println!(
-        "{}",
-        select_option.color(Color::Blue).bg_color(Color::Black)
-    );
+    loop {
+        println!(
+            "{} {}",
+            emoji_todo_list,
+            title.color(Color::Orange3).bg_color(Color::Black).bold()
+        );
+
+        println!("1: List tasks {}", emoji_list_tasks);
+        println!("2: Add task {}", emoji_add_task);
+        println!("3: Edit task {}", emoji_edit_task);
+        println!("4: Delete task {}", emoji_delete_task);
+        println!("5: Check task {}", emoji_check_task);
+        println!("0: Back {}", emoji_back);
+        println!(
+            "{}",
+            select_option.color(Color::Blue).bg_color(Color::Black)
+        );
+
+        let stdin = io::stdin();
+        let action = stdin.lock().lines().next().unwrap().unwrap();
+
+        match action.as_ref() {
+            "1" => list_tasks_english(),
+            "2" => add_task_english(),
+            "3" => edit_task_english(),
+            "4" => delete_task_english(),
+            "5" => check_task_english(),
+            "0" => main(),
+            _ => println!("Option invalid"),
+        }
+    }
 }
 
+// LIST TASKS ENGLISH
+fn list_tasks_english() {
+    println!("List tasks");
+}
+
+// ADD TASKS ENGLISH
+fn add_tasks_english() {
+    println!("Add Task")
+}
+
+// SPANISH LANGUAGES
 fn spanish_language() {
     println!("Spanish language");
 }
