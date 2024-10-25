@@ -1,6 +1,8 @@
+use core::task;
 use std::io;
 use std::io::BufRead;
-// use std::io::Write;
+use std::io::Write;
+use std::ptr::null;
 
 extern crate colorful;
 use colorful::Color;
@@ -122,6 +124,8 @@ fn about_as() {
 
 // ENGLISH LANGUAGES
 fn english_language() {
+    let mut tasks: Vec<String> = vec![String::new()];
+
     // EMOJIS
     let emoji_todo_list = emojis::get_by_shortcode("bookmark_tabs").unwrap();
     let emoji_list_tasks = emojis::get_by_shortcode("open_book").unwrap();
@@ -167,25 +171,62 @@ fn english_language() {
         let action = stdin.lock().lines().next().unwrap().unwrap();
 
         match action.as_ref() {
-            "1" => list_tasks_english(),
-            "2" => add_task_english(),
+            "1" => list_tasks_english(&tasks),
+            "2" => add_task_english(&mut tasks),
             "3" => edit_task_english(),
             "4" => delete_task_english(),
             "5" => check_task_english(),
             "0" => main(),
-            _ => println!("Option invalid"),
+            _ => println!("Invalid option"),
         }
     }
 }
 
 // LIST TASKS ENGLISH
-fn list_tasks_english() {
-    println!("List tasks");
+fn list_tasks_english(tasks: &Vec<String>) {
+    let no_action = "... there are no tasks in the list";
+    let action = "... listed tasks";
+
+    for task in tasks {
+        if task == "" {
+            println!("{}", no_action.color(Color::Red3b).bg_color(Color::Black));
+        } else {
+            println!("- {}", task);
+            println!("{}", action.color(Color::DarkGray).bg_color(Color::Black));
+        }
+    }
 }
 
 // ADD TASKS ENGLISH
-fn add_tasks_english() {
-    println!("Add Task")
+fn add_task_english(tasks: &mut Vec<String>) {
+    let mut input = String::new();
+
+    let action = "... task add successfully";
+
+    println!("Add task");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut input).unwrap();
+    let task = input.trim().to_string();
+
+    tasks.push(task);
+
+    println!("{}", action.color(Color::DarkGray).bg_color(Color::Black));
+}
+
+// EDIT TASK ENGLISH
+fn edit_task_english() {
+    println!("Edit task english");
+}
+
+// DELETE TASK ENGLISH
+fn delete_task_english() {
+    println!("Delete task english");
+}
+
+// CHECK TASK ENGLISH
+fn check_task_english() {
+    println!("Check task english");
 }
 
 // SPANISH LANGUAGES
