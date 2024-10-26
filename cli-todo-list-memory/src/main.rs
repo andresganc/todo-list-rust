@@ -3,6 +3,7 @@ use std::io;
 use std::io::BufRead;
 use std::io::Write;
 use std::ptr::null;
+use std::usize;
 
 extern crate colorful;
 use colorful::core::StrMarker;
@@ -183,7 +184,7 @@ fn english_language() {
         match action.as_ref() {
             "1" => list_tasks_english(&tasks),
             "2" => add_task_english(&mut tasks),
-            "3" => edit_task_english(),
+            "3" => edit_task_english(&mut tasks),
             "4" => delete_task_english(&mut tasks),
             "5" => check_task_english(),
             "0" => main(),
@@ -244,8 +245,29 @@ fn add_task_english(tasks: &mut Vec<String>) {
 }
 
 // EDIT TASK ENGLISH
-fn edit_task_english() {
-    println!("Edit task english");
+fn edit_task_english(tasks: &mut Vec<String>) {
+    let mut input = String::new();
+    let mut new_input = String::new();
+
+    let action = "... task edited successfully";
+
+    print!("Enter the index of the task to edit: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut input).unwrap();
+    let index = input.trim().parse::<usize>().unwrap();
+
+    println!("The task selected is: {}", index);
+
+    println!("Enter the new task");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut new_input).unwrap();
+
+    // tasks[index].push(new_input);
+    tasks[index] = new_input;
+
+    println!("{}", action.color(Color::DarkGreen).bg_color(Color::Black));
 }
 
 // DELETE TASK ENGLISH
