@@ -1,12 +1,8 @@
-use core::task;
 use std::io;
 use std::io::BufRead;
 use std::io::Write;
-use std::ptr::null;
-use std::usize;
 
 extern crate colorful;
-use colorful::core::StrMarker;
 use colorful::Color;
 use colorful::Colorful;
 // use colorful::HSL;
@@ -113,6 +109,7 @@ fn about_as() {
         title.color(Color::DarkSeaGreen4a).bg_color(Color::Black)
     );
     println!("Name: CLI Todo List Memory");
+    println!("Todo list basic in English and Spanih, With List, Add, Edit and Delete");
     println!("Author: Andres Giraldo Arenas");
     println!("Language: Rust");
     println!("Type: Command Line Interface");
@@ -213,7 +210,7 @@ fn list_tasks_english(tasks: &Vec<String>) {
         );
     } else {
         for task in tasks {
-            println!("- {}", task);
+            println!(" - {}", task);
         }
         println!("{}", action.color(Color::DarkGray).bg_color(Color::Black));
     }
@@ -248,8 +245,16 @@ fn add_task_english(tasks: &mut Vec<String>) {
 fn edit_task_english(tasks: &mut Vec<String>) {
     let mut input = String::new();
     let mut new_input = String::new();
+    let selected_option = "selected option ...";
 
     let action = "... task edited successfully";
+
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
 
     print!("Enter the index of the task to edit: ");
     io::stdout().flush().unwrap();
@@ -264,7 +269,6 @@ fn edit_task_english(tasks: &mut Vec<String>) {
 
     io::stdin().read_line(&mut new_input).unwrap();
 
-    // tasks[index].push(new_input);
     tasks[index] = new_input;
 
     println!("{}", action.color(Color::DarkGreen).bg_color(Color::Black));
@@ -309,5 +313,190 @@ fn check_task_english() {
 
 // SPANISH LANGUAGES
 fn spanish_language() {
-    println!("Spanish language");
+    // let mut tasks: Vec<String> = vec![String::new()];
+    let mut tasks = Vec::new();
+
+    // EMOJIS
+    let emoji_todo_list = emojis::get_by_shortcode("bookmark_tabs").unwrap();
+    let emoji_list_tasks = emojis::get_by_shortcode("open_book").unwrap();
+    let emoji_add_task = emojis::get_by_shortcode("blue_book").unwrap();
+    let emoji_edit_task = emojis::get_by_shortcode("orange_book").unwrap();
+    let emoji_delete_task = emojis::get_by_shortcode("closed_book").unwrap();
+    let emoji_check_task = emojis::get_by_shortcode("green_book").unwrap();
+    let emoji_back = emojis::get_by_shortcode("arrow_left").unwrap();
+
+    // TEXTS
+    let title = "TODO LIST MEMORY - SPANISH";
+    let selected = "... lenguaje español seleccionado ";
+    let select_option = "Seleccione una opcion";
+    let selected_option = "opcion seleccionada ...";
+    let invalid_option = "opcion invalida";
+
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
+
+    println!(
+        "{}",
+        selected
+            .color(Color::DarkGray)
+            .bg_color(Color::Black)
+            .italic()
+    );
+
+    loop {
+        println!(
+            "{} {}",
+            emoji_todo_list,
+            title.color(Color::Orange3).bg_color(Color::Black).bold()
+        );
+
+        println!("1: Listar tareas {}", emoji_list_tasks);
+        println!("2: Agregar tarea {}", emoji_add_task);
+        println!("3: Editar tarea {}", emoji_edit_task);
+        println!("4: Eliminar tarea {}", emoji_delete_task);
+        println!("5: Chequear tarea {}", emoji_check_task);
+        println!("0: Atras {}", emoji_back);
+        println!(
+            "{}",
+            select_option.color(Color::Blue).bg_color(Color::Black)
+        );
+
+        let stdin = io::stdin();
+        let action = stdin.lock().lines().next().unwrap().unwrap();
+
+        match action.as_ref() {
+            "1" => list_tasks_spanish(&tasks),
+            "2" => add_task_spanish(&mut tasks),
+            "3" => edit_task_spanish(&mut tasks),
+            "4" => delete_task_spanish(&mut tasks),
+            "5" => check_task_spanish(),
+            "0" => main(),
+            _ => println!("opcion invalida"),
+        }
+    }
+}
+
+// LIST TASKS SPANISH
+fn list_tasks_spanish(tasks: &Vec<String>) {
+    let no_action = "... no hay tareas en la lista";
+    let action = "... tareas listadas";
+    let selected_option = "opcion seleccionada ...";
+
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
+
+    if tasks.is_empty() {
+        println!(
+            "{}",
+            no_action.color(Color::DarkRed1).bg_color(Color::Black)
+        );
+    } else {
+        for task in tasks {
+            println!(" - {}", task);
+        }
+        println!("{}", action.color(Color::DarkGray).bg_color(Color::Black));
+    }
+}
+
+// ADD TASKS SPANISH
+fn add_task_spanish(tasks: &mut Vec<String>) {
+    let mut input = String::new();
+
+    let action = "... tarea agregada satisfactoriamente";
+    let selected_option = "opcion seleccionada ...";
+
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
+
+    print!("Agregue la tarea: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut input).unwrap();
+    let task = input.trim().to_string();
+
+    tasks.push(task);
+
+    println!("{}", action.color(Color::DarkGreen).bg_color(Color::Black));
+}
+
+// EDIT TASK SPANISH
+fn edit_task_spanish(tasks: &mut Vec<String>) {
+    let mut input = String::new();
+    let mut new_input = String::new();
+    let selected_option = "opcion seleccionada ...";
+
+    let action = "... taarea editada satisfactoriamente ...";
+
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
+
+    print!("Agregue el index de la tarea a editar: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut input).unwrap();
+    let index = input.trim().parse::<usize>().unwrap();
+
+    println!("La tarea seleccionada es: {}", index);
+
+    println!("Agregue la nueva tarea: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut new_input).unwrap();
+
+    tasks[index] = new_input;
+
+    println!("{}", action.color(Color::DarkGreen).bg_color(Color::Black));
+}
+
+// DELETE TASK SPANISH
+fn delete_task_spanish(tasks: &mut Vec<String>) {
+    let mut input = String::new();
+
+    let no_action = "... index de tarea invalida";
+    let action = "... tarea eliminada satisfactoriamente";
+    let selected_option = "opcion seleccionada ...";
+
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
+
+    print!("Agregue el index de la tarea a eliminar: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut input).unwrap();
+    let index = input.trim().parse::<usize>().unwrap();
+
+    if index >= tasks.len() {
+        print!(
+            "{}",
+            no_action.color(Color::DarkRed1).bg_color(Color::Black)
+        );
+    } else {
+        tasks.remove(index);
+        println!("{}", action.color(Color::DarkGreen).bg_color(Color::Black));
+    }
+}
+
+// CHECK TASK SPANISH
+fn check_task_spanish() {
+    println!("Chequear tarea español");
 }
