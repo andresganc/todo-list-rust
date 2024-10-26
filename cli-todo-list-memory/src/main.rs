@@ -5,6 +5,7 @@ use std::io::Write;
 use std::ptr::null;
 
 extern crate colorful;
+use colorful::core::StrMarker;
 use colorful::Color;
 use colorful::Colorful;
 // use colorful::HSL;
@@ -124,7 +125,8 @@ fn about_as() {
 
 // ENGLISH LANGUAGES
 fn english_language() {
-    let mut tasks: Vec<String> = vec![String::new()];
+    // let mut tasks: Vec<String> = vec![String::new()];
+    let mut tasks = Vec::new();
 
     // EMOJIS
     let emoji_todo_list = emojis::get_by_shortcode("bookmark_tabs").unwrap();
@@ -139,7 +141,15 @@ fn english_language() {
     let title = "TODO LIST MEMORY - ENGLISH";
     let selected = "... english language selected ";
     let select_option = "Select an option";
+    let selected_option = "seleted option ...";
     let invalid_option = "Invalid option";
+
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
 
     println!(
         "{}",
@@ -174,7 +184,7 @@ fn english_language() {
             "1" => list_tasks_english(&tasks),
             "2" => add_task_english(&mut tasks),
             "3" => edit_task_english(),
-            "4" => delete_task_english(),
+            "4" => delete_task_english(&mut tasks),
             "5" => check_task_english(),
             "0" => main(),
             _ => println!("Invalid option"),
@@ -186,14 +196,25 @@ fn english_language() {
 fn list_tasks_english(tasks: &Vec<String>) {
     let no_action = "... there are no tasks in the list";
     let action = "... listed tasks";
+    let selected_option = "selected option ...";
 
-    for task in tasks {
-        if task == "" {
-            println!("{}", no_action.color(Color::Red3b).bg_color(Color::Black));
-        } else {
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
+
+    if tasks.is_empty() {
+        println!(
+            "{}",
+            no_action.color(Color::DarkRed1).bg_color(Color::Black)
+        );
+    } else {
+        for task in tasks {
             println!("- {}", task);
-            println!("{}", action.color(Color::DarkGray).bg_color(Color::Black));
         }
+        println!("{}", action.color(Color::DarkGray).bg_color(Color::Black));
     }
 }
 
@@ -202,8 +223,16 @@ fn add_task_english(tasks: &mut Vec<String>) {
     let mut input = String::new();
 
     let action = "... task add successfully";
+    let selected_option = "selected option ...";
 
-    println!("Add task");
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
+
+    print!("Enter task: ");
     io::stdout().flush().unwrap();
 
     io::stdin().read_line(&mut input).unwrap();
@@ -211,7 +240,7 @@ fn add_task_english(tasks: &mut Vec<String>) {
 
     tasks.push(task);
 
-    println!("{}", action.color(Color::DarkGray).bg_color(Color::Black));
+    println!("{}", action.color(Color::DarkGreen).bg_color(Color::Black));
 }
 
 // EDIT TASK ENGLISH
@@ -220,8 +249,35 @@ fn edit_task_english() {
 }
 
 // DELETE TASK ENGLISH
-fn delete_task_english() {
-    println!("Delete task english");
+fn delete_task_english(tasks: &mut Vec<String>) {
+    let mut input = String::new();
+
+    let no_action = "... invalid task index";
+    let action = "... task deleted successfully";
+    let selected_option = "selected option ...";
+
+    println!(
+        "{}",
+        selected_option
+            .color(Color::DarkGreen)
+            .bg_color(Color::Black)
+    );
+
+    print!("Enter task index to delete: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut input).unwrap();
+    let index = input.trim().parse::<usize>().unwrap();
+
+    if index >= tasks.len() {
+        print!(
+            "{}",
+            no_action.color(Color::DarkRed1).bg_color(Color::Black)
+        );
+    } else {
+        tasks.remove(index);
+        println!("{}", action.color(Color::DarkGreen).bg_color(Color::Black));
+    }
 }
 
 // CHECK TASK ENGLISH
