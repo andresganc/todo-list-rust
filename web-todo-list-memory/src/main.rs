@@ -2,6 +2,7 @@
 
 use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
+use wasm_bindgen::prelude::*;
 
 #[derive(Clone, Routable, Debug, PartialEq)]
 enum Route {
@@ -9,6 +10,12 @@ enum Route {
     Home {},
     #[route("/blog/:id")]
     Blog { id: i32 },
+}
+
+#[wasm_bindgen(module = "/src/styles.css")]
+extern "C" {
+    fn container() -> String;
+    fn btn() -> String;
 }
 
 fn main() {
@@ -27,6 +34,27 @@ fn App() -> Element {
 #[component]
 fn Blog(id: i32) -> Element {
     rsx! {
+        div {
+            div {
+                h4 {"TODO LIST MEMORY / WEB"}
+            }
+
+            nav {
+                div {
+
+                    p {"Home"}
+                }
+                div {
+
+                    p {"Todo List"}
+                }
+                div {
+
+                    p {"About as"}
+                }
+            }
+        }
+
         Link { to: Route::Home {}, "Go to counter" }
         "Blog post {id}"
     }
@@ -37,6 +65,29 @@ fn Home() -> Element {
     let mut count = use_signal(|| 0);
 
     rsx! {
+
+    div { class: "container",
+        div {
+
+            h4 {"TODO LIST MEMORY / WEB"}
+        }
+
+        nav { display: "flex", justify_content: "center", align_items: "center",
+            div {
+
+                p {"Home"}
+            }
+            div {
+
+                p {"Todo List"}
+            }
+            div {
+
+                p {"About as"}
+            }
+        }
+    }
+
         Link {
             to: Route::Blog {
                 id: count()
