@@ -4,6 +4,9 @@ use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
 use manganis::*;
 
+// TAILWIND STYLES
+const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
+
 #[derive(Clone, Routable, Debug, PartialEq)]
 enum Route {
     #[route("/")]
@@ -58,10 +61,14 @@ fn Blog(id: i32) -> Element {
 #[component]
 fn Home() -> Element {
     let mut count = use_signal(|| 0);
-    const ASSET: manganis::ImageAsset = manganis::mg!(image("./assets/marvel.png"));
-    // const AVIF_ASSET: &str = manganis::file!("./assets/header.svg");
-    // pub const AVIF_ASSET: manganis::ImageAsset =
-    manganis::mg!(image("./assets/marvel.png").format(ImageType::Avif));
+
+    // STYLES
+
+    // IMAGES
+    const img_marvel: manganis::ImageAsset = manganis::mg!(image("./assets/marvel.png")
+        .size(150, 150)
+        .format(ImageType::Avif)
+        .preload());
 
     rsx! {
 
@@ -98,7 +105,7 @@ fn Home() -> Element {
         div {
 
             img {
-                src: "{ASSET}"
+                src: "{img_marvel}"
             }
 
             h1 { "High-Five counter: {count}" }
