@@ -4,9 +4,6 @@ use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
 use manganis::*;
 
-// TAILWIND STYLES
-const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
-
 #[derive(Clone, Routable, Debug, PartialEq)]
 enum Route {
     #[route("/")]
@@ -60,41 +57,36 @@ fn Blog(id: i32) -> Element {
 // #[warn(unused_imports)]
 #[component]
 fn Home() -> Element {
+    // LOGIC
     let mut count = use_signal(|| 0);
 
-    // STYLES
-
     // IMAGES
-    const img_marvel: manganis::ImageAsset = manganis::mg!(image("./assets/marvel.png")
+    const MARVEL: manganis::ImageAsset = manganis::mg!(image("./assets/marvel.png")
         .size(150, 150)
         .format(ImageType::Avif)
         .preload());
 
     rsx! {
+        // IMPORT TAILWIND STYLES
+        link { rel: "stylesheet", href: "https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" },
 
-    // document::Link { rel: "stylesheet", href: STYLE }
-
-    div { class: "container",
-        div {
-
-            h4 {"TODO LIST MEMORY / WEB"}
-        }
-
-        nav { display: "flex", justify_content: "center", align_items: "center",
+        div { class: "container mx-auto flex justify-between p-6 text-blue bg-blue-500",
             div {
-
-                p {"Home"}
+                h4 { class:"text-blue-500", "TODO LIST MEMORY / WEB"}
             }
-            div {
 
-                p {"Todo List"}
-            }
-            div {
-
-                p {"About as"}
+            nav { class: "container flex item-center bg-black-200",
+                div {
+                    p {"Home"}
+                }
+                div {
+                    p {"Todo List"}
+                }
+                div {
+                    p {"About as"}
+                }
             }
         }
-    }
 
         Link {
             to: Route::Blog {
@@ -105,11 +97,11 @@ fn Home() -> Element {
         div {
 
             img {
-                src: "{img_marvel}"
+                src: "{MARVEL}"
             }
 
             h1 { "High-Five counter: {count}" }
-            button { onclick: move |_| count += 1, "Up high!" }
+            button { class: "bg-blue-500", onclick: move |_| count += 1, "Up high!" }
             button { onclick: move |_| count -= 1, "Down low!" }
         }
     }

@@ -31,10 +31,9 @@ watch_path = ["src", "assets"]
 
 # CSS style file
 
-style = ["main.css"]
+style = []
 
-# Javascript code file
-script = []
+script = ["main.css"] # Javascript code file
 
 [web.resource.dev]
 
