@@ -2,7 +2,7 @@
 
 use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
-use wasm_bindgen::prelude::*;
+use manganis::*;
 
 #[derive(Clone, Routable, Debug, PartialEq)]
 enum Route {
@@ -10,12 +10,6 @@ enum Route {
     Home {},
     #[route("/blog/:id")]
     Blog { id: i32 },
-}
-
-#[wasm_bindgen(module = "/src/styles.css")]
-extern "C" {
-    fn container() -> String;
-    fn btn() -> String;
 }
 
 fn main() {
@@ -60,11 +54,18 @@ fn Blog(id: i32) -> Element {
     }
 }
 
+// #[warn(unused_imports)]
 #[component]
 fn Home() -> Element {
     let mut count = use_signal(|| 0);
+    const ASSET: manganis::ImageAsset = manganis::mg!(image("./assets/marvel.png"));
+    // const AVIF_ASSET: &str = manganis::file!("./assets/header.svg");
+    // pub const AVIF_ASSET: manganis::ImageAsset =
+    manganis::mg!(image("./assets/marvel.png").format(ImageType::Avif));
 
     rsx! {
+
+    // document::Link { rel: "stylesheet", href: STYLE }
 
     div { class: "container",
         div {
@@ -95,6 +96,11 @@ fn Home() -> Element {
             "Go to blog"
         }
         div {
+
+            img {
+                src: "{ASSET}"
+            }
+
             h1 { "High-Five counter: {count}" }
             button { onclick: move |_| count += 1, "Up high!" }
             button { onclick: move |_| count -= 1, "Down low!" }
