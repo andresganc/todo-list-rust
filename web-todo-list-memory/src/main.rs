@@ -4,6 +4,10 @@ use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
 use manganis::*;
 
+// MODULES
+mod views;
+// crate views::menus::main_menu;
+
 #[derive(Clone, Routable, Debug, PartialEq)]
 enum Route {
     #[route("/")]
