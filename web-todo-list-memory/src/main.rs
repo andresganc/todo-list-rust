@@ -6,18 +6,21 @@ use manganis::*;
 
 // MODULES
 mod views;
-// crate views::menus::main_menu;
+// Menu
+// use views::menus::main_menu::MainMenu as ComponentMainMenu;
+// use views::menus::main_menu::Route as RouteManager;
+// Pages
+use views::home::page_home::PageHome as ComponentPageHome;
+use views::todo_list::page_todo_list::PageTodoList as ComponentPageTodoList;
 
 #[derive(Clone, Routable, Debug, PartialEq)]
+#[rustfmt::skip]
 enum Route {
+    #[layout(MainMenu)]
     #[route("/")]
-    Home {},
+    ComponentPageHome {},
     #[route("/todo-list")]
-    TodoList {},
-    #[route("/about-as")]
-    AboutAs,
-    #[route("/blog/:id")]
-    Blog { id: i32 },
+    ComponentPageTodoList {},
 }
 
 fn main() {
@@ -30,6 +33,44 @@ fn main() {
 fn App() -> Element {
     rsx! {
         Router::<Route> {}
+    }
+}
+
+#[component]
+fn MainMenu() -> Element {
+    // IMAGES
+    // const MARVEL: manganis::ImageAsset = manganis::mg!(image("./assets/marvel.png")
+    //     .size(150, 150)
+    //     .format(ImageType::Avif)
+    //     .preload());
+
+    rsx! {
+        // IMPORT TAILWIND STYLES
+        link { rel: "stylesheet", href: "https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" },
+
+        div { class: "flex justify-between aling-center p-5 text-white bg-blue-500",
+            div {
+                h4 { class:"text-lg text-white font-bold", "TODO LIST MEMORY / WEB"}
+            }
+
+            div {
+                nav { class: "flex justify-center aling-center gap-4 ",
+                    div {
+                        Link {
+                            to: Route::ComponentPageHome {},
+                            p {"Home"}
+                        }
+                    }
+                    div {
+                        Link {
+                            to: Route::ComponentPageTodoList {},
+                            p {"Todo List"}
+                        }
+                    }
+                }
+            }
+        }
+    Outlet::<Route> {}
     }
 }
 
@@ -49,42 +90,44 @@ fn Home() -> Element {
         // IMPORT TAILWIND STYLES
         link { rel: "stylesheet", href: "https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" },
 
-        div { class: "flex justify-between aling-center p-5 text-white bg-blue-500",
-            div {
-                h4 { class:"text-lg text-white font-bold", "TODO LIST MEMORY / WEB"}
-            }
+        {crate::views::menus::main_menu::MainMenu()}
 
-            div {
-                nav { class: "flex justify-center aling-center gap-4 ",
-                    div {
-                        Link {
-                            to: Route::Home {},
-                            p {"Home"}
-                        }
-                    }
-                    div {
-                        Link {
-                            to: Route::TodoList {},
-                            p {"Todo List"}
-                        }
-                    }
-                    div {
-                        Link {
-                            to: Route::AboutAs {},
-                            p {"About as"}
-                        }
-                    }
-                    // div {
-                    //     Link {
-                    //         to: Route::Blog {
-                    //             id: count()
-                    //         },
-                    //         p {"Todo List"}
-                    //     }
-                    // }
-                }
-            }
-        }
+        // div { class: "flex justify-between aling-center p-5 text-white bg-blue-500",
+        //     div {
+        //         h4 { class:"text-lg text-white font-bold", "TODO LIST MEMORY / WEB"}
+        //     }
+        //
+        //     div {
+        //         nav { class: "flex justify-center aling-center gap-4 ",
+        //             div {
+        //                 Link {
+        //                     to: Route::Home {},
+        //                     p {"Home"}
+        //                 }
+        //             }
+        //             div {
+        //                 Link {
+        //                     to: Route::TodoList {},
+        //                     p {"Todo List"}
+        //                 }
+        //             }
+        //             div {
+        //                 Link {
+        //                     to: Route::AboutAs {},
+        //                     p {"About as"}
+        //                 }
+        //             }
+        //             // div {
+        //             //     Link {
+        //             //         to: Route::Blog {
+        //             //             id: count()
+        //             //         },
+        //             //         p {"Todo List"}
+        //             //     }
+        //             // }
+        //         }
+        //     }
+        // }
 
 
         div {
@@ -149,7 +192,7 @@ fn Blog(id: i32) -> Element {
             }
         }
 
-        Link { to: Route::Home {}, "Go to counter" }
-        "Blog post {id}"
+        // Link { to: Route::Home {}, "Go to counter" }
+        // "Blog post {id}"
     }
 }

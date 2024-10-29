@@ -3,8 +3,8 @@ use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
 
 #[component]
-pub fn PageHome() -> Element {
+pub fn PageTodoList() -> Element {
     rsx! {
-        h2 {"PAGE HOME"}
+        h2 {"PAGE TODO LIST"}
     }
 }
