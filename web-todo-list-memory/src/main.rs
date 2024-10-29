@@ -10,6 +10,7 @@ mod views;
 // use views::menus::main_menu::MainMenu as ComponentMainMenu;
 // use views::menus::main_menu::Route as RouteManager;
 // Pages
+use views::about_as::page_about_as::PageAboutAs as ComponentPageAboutAs;
 use views::home::page_home::PageHome as ComponentPageHome;
 use views::todo_list::page_todo_list::PageTodoList as ComponentPageTodoList;
 
@@ -21,6 +22,8 @@ enum Route {
     ComponentPageHome {},
     #[route("/todo-list")]
     ComponentPageTodoList {},
+    #[route("/about-as")]
+    ComponentPageAboutAs {},
 }
 
 fn main() {
@@ -64,7 +67,14 @@ fn MainMenu() -> Element {
                     div {
                         Link {
                             to: Route::ComponentPageTodoList {},
-                            p {"Todo List"}
+                            p {"Todo list"}
+                        }
+                    }
+
+                    div {
+                        Link {
+                            to: Route::ComponentPageAboutAs {},
+                            p {"About as"}
                         }
                     }
                 }
