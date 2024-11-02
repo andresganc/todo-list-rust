@@ -4,7 +4,7 @@ use dioxus::prelude::*;
 // use dioxus_logger::tracing::{info, Level};
 
 #[component]
-fn Header() -> Element {
+pub fn SectionHeaderHome() -> Element {
     rsx! {
         div {
             h3 {"Section header"}
