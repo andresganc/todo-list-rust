@@ -2,9 +2,13 @@
 use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
 
+// Modules
+use super::section_header_aa::SectionHeaderAA;
+
 #[component]
 pub fn PageAboutAs() -> Element {
     rsx! {
         h2 {"PAGE ABOUT AS"}
+        {SectionHeaderAA()}
     }
 }
