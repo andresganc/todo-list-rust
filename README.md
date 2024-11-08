@@ -5,6 +5,13 @@
   - Storing in Memory, File, SQLite and API developed with actix web and database SQLite 
 
 
-## CLI Todo List Memory
+## TODO LIST - COMMAND LINE INTERFACE
 
-## ClI Todo List File
+### CLI Todo List - Memory
+
+### CLI Todo List - File
+
+### CLI Todo List - SQLite
+
+### CLI Todo List - API (SQLite)
+
