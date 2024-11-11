@@ -29,3 +29,11 @@
 ### Web Todo List - SQLite
   -
 ### Web Todo List - API (SQLite)
+
+
+## TODO LIST - DESKTOP
+  -
+
+### Desktop Todo List - Memory
+
+  
