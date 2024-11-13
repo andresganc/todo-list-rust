@@ -6,22 +6,19 @@
 
 
 ## TODO LIST - COMMAND LINE INTERFACE
-
+  -
 ### CLI Todo List - Memory
   -
-  
 ### CLI Todo List - File
   -
-  
 ### CLI Todo List - SQLite
   -
-  
 ### CLI Todo List - API (SQLite)
   -
 
 
 ## TODO LIST - WEB
-
+  -
 ### Web Todo List - Memory
   -
 ### Web Todo List - File
@@ -33,7 +30,9 @@
 
 ## TODO LIST - DESKTOP
   -
-
 ### Desktop Todo List - Memory
+  -
+### Desktop Todo List - File
+
 
   
