@@ -10,7 +10,7 @@
 
 ### CLI Todo List - Memory
 
--
+  - Command Line Interface Todo List, saved a memory
 
 ### CLI Todo List - File
 
