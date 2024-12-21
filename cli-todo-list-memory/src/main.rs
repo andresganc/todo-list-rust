@@ -115,7 +115,7 @@ fn about_as() {
     println!("Type: Command Line Interface");
     println!("Used libraries: Emojis, Colorful");
     println!("Storage: Memory");
-    println!("Web: www.andresgadev.com");
+    println!("Web: www.andresgiraldo.site");
     println!("X: @andresgandev");
     println!("Github: andresaganc");
     println!("Linkedin: ");

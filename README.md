@@ -6,7 +6,8 @@
 
 ## TODO LIST - COMMAND LINE INTERFACE
 
--
+- Todo List develomend with
+   Commnad Line Interface
 
 ### CLI Todo List - Memory
 
@@ -42,16 +43,20 @@
 
 ### Web Todo List - API (SQLite)
 
+-
+
 ## TODO LIST - DESKTOP
 
 -
 
 ### Desktop Todo List - Memory
-
--
+  -
 
 ### Desktop Todo List - File
+  -
 
--
+### Desktop Todo List - SQLite
+  -
 
-### Desktop Todo List SQLite
+### Desktop Todo List - API (SQLite)
+
