@@ -118,7 +118,7 @@ fn about_as() {
     println!("Web: www.andresgiraldo.site");
     println!("X: @andresgandev");
     println!("Github: andresaganc");
-    println!("Linkedin: ");
+    println!("Linkedin: andresganc");
 }
 
 // ENGLISH LANGUAGES
