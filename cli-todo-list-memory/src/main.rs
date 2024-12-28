@@ -109,7 +109,7 @@ fn about_as() {
         title.color(Color::DarkSeaGreen4a).bg_color(Color::Black)
     );
     println!("Name: CLI Todo List Memory");
-    println!("Todo list basic in english and epanih, with list, Add, Edit and Delete");
+    println!("Todo list basic in english and spanish, with list, Add, Edit and Delete");
     println!("Author: Andres Giraldo Arenas");
     println!("Language: Rust");
     println!("Type: Command Line Interface");
