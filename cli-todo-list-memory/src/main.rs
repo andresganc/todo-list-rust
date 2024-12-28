@@ -116,7 +116,7 @@ fn about_as() {
     println!("Used libraries: Emojis, Colorful");
     println!("Storage: Memory");
     println!("Web: www.andresgiraldo.site");
-    println!("X: @andresgandev");
+    println!("X: @andresgadev");
     println!("Github: andresaganc");
     println!("Linkedin: andresganc");
 }
